@@ -1,0 +1,247 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #e0e0e0; /* Light gray for readability */
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    background-color: #0d0d0d; /* Backup dark color for any delay in gradient loading */
+}
+
+/* Black and Gray Background Animation */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(120deg, #1a1a1a, #333333, #4d4d4d, #666666);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: gradientBackground 15s ease infinite;
+}
+
+/* Gradient Animation */
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Header */
+.header {
+    background-color: rgba(20, 20, 20, 0.8); /* Slightly transparent dark background */
+    padding: 20px;
+    text-align: center;
+    transform: translateY(-50px);
+    animation: slideDown 1s ease-out forwards;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #f5f5f5; /* Bright for contrast */
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #bfbfbf; /* Softer gray */
+}
+
+/* Navigation */
+.navbar {
+    background: rgba(30, 30, 30, 0.8);
+    padding: 15px;
+    text-align: center;
+}
+
+.navbar ul {
+    list-style: none;
+}
+
+.navbar li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.navbar a {
+    color: #e6e6e6;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: #c0c0c0; /* Light gray on hover */
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sections */
+.section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    padding: 40px;
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: rgba(40, 40, 40, 0.9); /* Dark gray with slight transparency */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+.section.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation Delay for Sections */
+.section:nth-child(1) { animation-delay: 0.2s; }
+.section:nth-child(2) { animation-delay: 0.4s; }
+.section:nth-child(3) { animation-delay: 0.6s; }
+.section:nth-child(4) { animation-delay: 0.8s; }
+.section:nth-child(5) { animation-delay: 1s; }
+.section:nth-child(6) { animation-delay: 1.2s; }
+
+.section h2 {
+    font-size: 1.8rem;
+    color: #f5f5f5; /* Brighter text color for headers */
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.section h2:hover {
+    color: #c0c0c0; /* Light gray on hover */
+}
+
+.section p, .section ul, .section li {
+    color: #d9d9d9; /* Softer gray for content */
+    margin-bottom: 8px;
+}
+
+/* Project Styles */
+.project {
+    perspective: 1000px; /* Add perspective for 3D effect */
+    margin: 20px;
+}
+
+.project .card {
+    width: 100%;
+    height: 200px; /* Set a height for the card */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.project .card:hover {
+    transform: rotateY(180deg); /* Rotate card on hover */
+}
+
+/* Front and Back Styles */
+.project .card .front,
+.project .card .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hide backface when not facing the viewer */
+}
+
+.project .card .front {
+    background: rgba(40, 40, 40, 0.9); /* Front background */
+    color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 8px;
+}
+
+.project .card .back {
+    background: rgba(60, 60, 60, 0.9); /* Back background */
+    color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: rotateY(180deg); /* Rotate back */
+    border-radius: 8px;
+}
+
+/* Footer */
+.footer {
+    background-color: rgba(20, 20, 20, 0.8); /* Dark semi-transparent background */
+    color: #f5f5f5;
+    text-align: center;
+    padding: 20px;
+    transform: translateY(50px);
+    opacity: 0;
+    animation: slideUp 1s ease-out forwards;
+    animation-delay: 1.2s;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(40, 40, 40, 0.8);
+    color: #f5f5f5;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+}
+
+/* Link Styles */
+a {
+    color: #e6e6e6; /* Light gray for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
